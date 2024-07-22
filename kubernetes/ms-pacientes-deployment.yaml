@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-pacientes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-pacientes
+  template:
+    metadata:
+      labels:
+        app: ms-pacientes
+    spec:
+      serviceAccountName: irsasecrets
+      containers:
+        - name: ms-pacientes
+          image: 851725345801.dkr.ecr.us-east-1.amazonaws.com/ms-pacientes:{{VERSION}}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "0.25"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          env:
+            - name: MONGO_URL
+              valueFrom:
+                secretKeyRef:
+                  name: documentdb-secret
+                  key: urlCustomers
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "aws-secrets-ms-pacientes"  # Nome do seu SecretProviderClass
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ms-pacientes
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ms-pacientes
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
