@@ -1,0 +1,29 @@
+name: ms-pacientes
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    env_file: .env
+
+volumes:
+  mongo_data:
+    name: mongo_data
+    external: true

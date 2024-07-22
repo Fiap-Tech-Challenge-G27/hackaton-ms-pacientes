@@ -1,0 +1,40 @@
+@baseUrl = http://localhost
+##Alterar a porta de acordo com a exposição do serviço pelo Kubernetes
+@port = 3333
+@host = {{baseUrl}}:{{port}}
+
+
+###
+# @name test
+GET {{host}}/
+
+
+###
+# @name newPatient
+POST {{host}}/patientes
+Content-Type: application/json
+
+{
+  "name": "string",
+  "phone": "string",
+  "email": "test{{$randomInt 10000 90000}}@gmail.com",
+  "password": "12345678",
+  "address": {
+    "street": "string",
+    "number": 1,
+    "city": "string",
+    "state": "string",
+    "zip": "string"
+  }
+}
+
+###
+# @name auth
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "test37642@gmail.com",
+  "password": "12345678"
+}
+
