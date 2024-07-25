@@ -30,11 +30,11 @@ spec:
             initialDelaySeconds: 60
             periodSeconds: 10
           env:
-            - name: MONGO_URL
+            - name: MONGODB_ENDPOINT
               valueFrom:
                 secretKeyRef:
                   name: documentdb-secret
-                  key: urlCustomers
+                  key: urlPacientes
           volumeMounts:
             - name: secrets-store-inline
               mountPath: "/mnt/secrets-store"
