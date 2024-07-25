@@ -33,7 +33,7 @@ spec:
             - name: MONGODB_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                  name: documentdb-secret
+                  name: documentdb-secret-pacientes
                   key: urlPacientes
           volumeMounts:
             - name: secrets-store-inline
