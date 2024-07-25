@@ -41,7 +41,7 @@ jobs:
     env:
       AWS_REGION: ${{ secrets.AWS_REGION }}
       ECR_REGISTRY: 851725345801.dkr.ecr.us-east-1.amazonaws.com
-      ECR_REPOSITORY: ms-consultas
+      ECR_REPOSITORY: ms-pacientes
       VERSION: ${{ github.run_number }}
       EKS_CLUSTER_NAME: fiap-hackathon
 
@@ -75,11 +75,11 @@ jobs:
         
       - name: Update deployment.yaml
         run: |
-          sed -i "s/{{VERSION}}/$VERSION/g" kubernetes/ms-consultas-deployment.yaml
+          sed -i "s/{{VERSION}}/$VERSION/g" kubernetes/ms-pacientes-deployment.yaml
           
       - name: Deploy to AWS EKS
         run: |
           kubectl apply -f kubernetes/secretproviderclass.yaml
-          kubectl apply -f kubernetes/ms-consultas-deployment.yaml
-          kubectl apply -f kubernetes/ms-consultas-service.yaml
+          kubectl apply -f kubernetes/ms-pacientes-deployment.yaml
+          kubectl apply -f kubernetes/ms-pacientes-service.yaml
 
