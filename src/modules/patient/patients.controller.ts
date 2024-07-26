@@ -21,9 +21,4 @@ export class PatientsController {
   findAll() {
     return this.patientsService.findAll();
   }
-
-  @Get('health')
-  healthCheck() {
-    return { status: 'ok', timestamp: new Date().toISOString() };
-  }
 }

@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PatientsModule } from './modules/patient/patients.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { FileModule } from './modules/file/file.module';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [
@@ -21,5 +22,6 @@ import { FileModule } from './modules/file/file.module';
     AuthModule,
     FileModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
