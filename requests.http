@@ -2,6 +2,9 @@
 ##Alterar a porta de acordo com a exposição do serviço pelo Kubernetes
 @port = 3333
 @host = {{baseUrl}}:{{port}}
+@cpf = 12345678900
+@filename = "file.pdf"
+
 
 
 ###
@@ -11,14 +14,14 @@ GET {{host}}/
 
 ###
 # @name newPatient
-POST {{host}}/patientes
+POST {{host}}/patients
 Content-Type: application/json
 
 {
   "name": "string",
   "phone": "string",
   "email": "test{{$randomInt 10000 90000}}@gmail.com",
-  "cpf": "string",
+  "cpf": "string1",
   "password": "12345678",
   "address": {
     "street": "string",
@@ -31,11 +34,29 @@ Content-Type: application/json
 
 ###
 # @name auth
-POST {{host}}/auth/login
+POST {{host}}/patients/auth/login
 Content-Type: application/json
 
 {
-  "username": "test37642@gmail.com",
+  "username": "string1",
   "password": "12345678"
 }
 
+###
+# @name uploadFile
+POST {{host}}/files/upload/12345678900
+Content-Type: multipart/form-data
+
+@file = mocks/lorem-ipsum.pdf
+
+###
+# @name getFiles
+GET {{host}}/files/{{cpf}}
+
+###
+# @name getFile
+GET {{host}}/files/{{cpf}}/{{filename}}
+
+###
+# @name deleteAllFiles
+DELETE {{host}}/files/delete-all

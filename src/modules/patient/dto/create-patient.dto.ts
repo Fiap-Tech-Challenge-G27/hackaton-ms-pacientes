@@ -15,8 +15,7 @@ export class AddressDto {
 }
 
 export class CreatePatientDto {
-  @IsString()
-  id: string;
+  id?: string;
 
   @ApiProperty()
   @IsString()
