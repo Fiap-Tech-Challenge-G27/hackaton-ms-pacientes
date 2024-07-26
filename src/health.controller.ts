@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-@Controller('patients/health')
+@Controller('/health')
 export class HealthController {
   @Get()
   getHealthStatus(): { status: string; timestamp: string } {
