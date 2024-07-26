@@ -13,7 +13,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { FileService } from './file.service';
 import { createReadStream } from 'fs';
 
-@Controller('files')
+@Controller('patients/files')
 export class FileController {
   constructor(private readonly fileService: FileService) {}
 
