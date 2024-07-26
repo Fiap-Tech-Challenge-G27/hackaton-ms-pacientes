@@ -21,6 +21,7 @@ export class PatientsService {
       name: createPatientDto.name,
       email: createPatientDto.email,
       phone: createPatientDto.phone,
+      cpf: createPatientDto.cpf,
       password: passwordEncrypted,
       address: {
         street: createPatientDto.address.street,
@@ -53,6 +54,7 @@ export class PatientsService {
       name: patient.name,
       email: patient.email,
       phone: patient.phone,
+      cpf: patient.cpf,
       address: new AddressEntity({
         street: patient.address.street,
         number: patient.address.number,

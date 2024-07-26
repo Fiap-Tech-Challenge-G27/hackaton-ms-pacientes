@@ -27,6 +27,8 @@ export class Patient {
   phone: string;
   @Prop({ required: true, unique: true })
   email: string;
+  @Prop({ required: true, unique: true })
+  cpf: string;
   @Prop({ required: true })
   password: string;
   @Prop({ required: true, type: AddressSchema })

@@ -18,6 +18,7 @@ Content-Type: application/json
   "name": "string",
   "phone": "string",
   "email": "test{{$randomInt 10000 90000}}@gmail.com",
+  "cpf": "string",
   "password": "12345678",
   "address": {
     "street": "string",

@@ -31,6 +31,10 @@ export class CreatePatientDto {
   email: string;
 
   @ApiProperty()
+  @IsString()
+  cpf: string;
+
+  @ApiProperty()
   @MinLength(8)
   password: string;
 

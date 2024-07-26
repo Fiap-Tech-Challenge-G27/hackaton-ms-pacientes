@@ -14,6 +14,7 @@ export class PatientEntity {
   name: string;
   phone: string;
   email: string;
+  cpf: string;
   password?: string;
   address: AddressEntity;
 
