@@ -42,7 +42,7 @@ export class PatientsService {
 
   async findByParam(param: string): Promise<PatientEntity> {
     const patient = await this.patientModel.findOne({
-      $or: [{ email: param }, { crm: param }],
+      $or: [{ email: param }, { cpf: param }],
     });
 
     if (!patient) {
