@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: ms-pacientes
   annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /heatlh
+    alb.ingress.kubernetes.io/healthcheck-path: /patients/health
 spec:
   selector:
     app: ms-pacientes
