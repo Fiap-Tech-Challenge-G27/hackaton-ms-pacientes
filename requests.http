@@ -21,7 +21,7 @@ Content-Type: application/json
   "name": "string",
   "phone": "string",
   "email": "test{{$randomInt 10000 90000}}@gmail.com",
-  "cpf": "string1",
+  "cpf": "12345678900",
   "password": "12345678",
   "address": {
     "street": "string",
@@ -31,6 +31,10 @@ Content-Type: application/json
     "zip": "string"
   }
 }
+
+###
+# @name deletePatientByCpf
+DELETE {{host}}/patients/{{cpf}}
 
 ###
 # @name auth

@@ -70,12 +70,19 @@ export class PatientsService {
     return patienteEntity;
   }
 
-  update(id: number, updatePatientDto: UpdatePatientDto) {
+  update(id: string, updatePatientDto: UpdatePatientDto) {
     console.log(updatePatientDto);
     return `This action updates a #${id} patient`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} patient`;
+  }
+
+  async deleteByCpf(cpf: string): Promise<void> {
+    const result = await this.patientModel.deleteMany({ cpf }).exec();
+    if (result.deletedCount === 0) {
+      throw new NotFoundException(`Paciente com CPF ${cpf} não encontrado`);
+    }
   }
 }
